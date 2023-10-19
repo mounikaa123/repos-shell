@@ -15,6 +15,6 @@ echo -e "\e[32m CREATING CART SERVICE \e[0m"
 cp /root/repos-shell/cart.service /etc/systemd/system/cart.service
 echo -e "\e[32m ENABLING AND STARTING THE CART SERVICE \e[0m"
 systemctl daemon-reload
-systemctl enable catalogue
-systemctl restart catalogue
+systemctl enable cart
+systemctl restart cart
 
