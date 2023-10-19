@@ -9,7 +9,6 @@ cd /app
 echo -e "\e[32m DOWNLOADING NEW CONTENT AND DEPENDENCIES \e[0m"
 curl -O https://roboshop-artifacts.s3.amazonaws.com/user.zip
 unzip user.zip
-rm -rf user.zip
 npm install
 echo -e "\e[32m CREATING USER SERVICE \e[0m"
 cp /root/repos-shell/user.service /etc/systemd/system/user.service
