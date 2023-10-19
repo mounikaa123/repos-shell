@@ -14,12 +14,12 @@ rm -rf user.zip
 npm install
 echo -e "\e[32m CREATING user SERVICE \e[0m"
 cp /root/repos-shell/user.service /etc/systemd/system/user.service
+systemctl daemon-reload
 echo -e "\e[32m DOWNLOADING AND INSTALLING THE MONGODB SCHEMA \e[0m"
 cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y
 mongo --host mongodb-dev.mounika.site </app/schema/user.js
 echo -e "\e[32m ENABLING AND STARTING THE user SERVICE \e[0m"
-systemctl daemon-reload
 systemctl enable user
 systemctl restart user
 
