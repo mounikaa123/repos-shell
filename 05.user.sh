@@ -11,7 +11,7 @@ curl -O https://roboshop-artifacts.s3.amazonaws.com/user.zip
 unzip user.zip
 rm -rf user.zip
 npm install
-echo -e "\e[32m CREATING user SERVICE \e[0m"
+echo -e "\e[32m CREATING USER SERVICE \e[0m"
 cp /root/repos-shell/user.service /etc/systemd/system/user.service
 echo -e "\e[32m DOWNLOADING AND INSTALLING THE MONGODB SCHEMA \e[0m"
 cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
