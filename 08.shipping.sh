@@ -2,6 +2,7 @@ echo -e "\e[32m INSTALLING MAVEN SERVICE \e[0m"
 yum install maven -y
 echo -e "\e[32m ADDING USER AND LOCATION \e[0m"
 useradd roboshop
+rm -rf /app
 mkdir /app
 cd /app
 echo -e "\e[32m DOWNLOADING NEW CONTENT AND DEPENDENCIES \e[0m"
