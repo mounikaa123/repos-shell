@@ -7,7 +7,6 @@ cd /app
 echo -e "\e[32m DOWNLOADING NEW CONTENT AND DEPENDENCIES \e[0m"
 curl -O https://roboshop-artifacts.s3.amazonaws.com/payment.zip
 unzip payment.zip
-rm -rf payment.zip
 pip3.6 install -r requirements.txt
 echo -e "\e[32m CREATING PAYMENT SERVICE \e[0m"
 cp /root/repos-shell/payment.service /etc/systemd/system/payment.service
