@@ -16,10 +16,9 @@ echo -e "\e[32m INSTALLING MySql SERVICE \e[0m"
 yum install mysql -y
 echo -e "\e[32M LOADING MySql SCHEME \e[0m"
 mysql -h mysql-dev.mounika.site -uroot -pRoboShop@1 </app/schema/shipping.sql
-echo -e "\e[32m ENABLING AND STARTING THE CATALOGUE SERVICE \e[0m"
+echo -e "\e[32m ENABLING AND STARTING THE SHIPPING SERVICE \e[0m"
 systemctl daemon-reload
 systemctl enable shipping
-systemctl start shipping
 systemctl restart shipping
 
 
