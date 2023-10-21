@@ -1,3 +1,8 @@
+color="\e[32m"
+nocolor="\e[0m"
+logfile="/tmp/roboshop.log"
+app_path="/app"
+
 echo -e "\e[32m DOWNLOADING NODEJS REPO \e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 echo -e "\e[32m INSTALLING NODEJS SERVICE \e[0m"
