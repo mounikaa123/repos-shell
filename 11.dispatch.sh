@@ -11,6 +11,8 @@ rm -rf dispatch.zip
 go mod init dispatch
 go get
 go build
+echo -e "\e[32m creating payment service file \e[0m"
+cp /root/repos-shell/dispatch.service /etc/systemd/system/dispatch.service
 echo -e "\e[32m ENABLING AND STARTING THE DISPATCH SERVICE \e[0m"
 systemctl daemon-reload
 systemctl enable dispatch
