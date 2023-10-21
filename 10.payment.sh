@@ -12,6 +12,5 @@ pip3.6 install -r requirements.txt
 echo -e "\e[32m CREATING PAYMENT SERVICE \e[0m"
 cp /root/repos-shell/payment.service /etc/systemd/system/payment.service
 echo -e "\e[32m ENABLING AND STARTING THE payment SERVICE \e[0m"
-systemctl daemon-reload
 systemctl enable payment
 systemctl restart payment
