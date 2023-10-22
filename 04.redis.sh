@@ -7,7 +7,7 @@ yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>${logf
 echo -e "$color ENABLING REDIS 6.2 $nocolor"
 yum module list &>>${logfile}
 yum module enable redis:remi-6.2 -y &>>${logfile}
-echo -e "\e[33m INSTALLING REDIS SERVICE $nocolor"
+echo -e "$color INSTALLING REDIS SERVICE $nocolor"
 yum install redis -y &>>${logfile}
 echo -e  "$color CHANGING THE LISTEN ADDRESS $nocolor"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf 
