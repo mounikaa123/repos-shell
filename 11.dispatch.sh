@@ -1,19 +1,24 @@
-echo -e "\e[33m INSTALLING GOLANG SERVICE \e[0m"
-yum install golang -y
-echo -e "\e[32m ADDING USER AND LOCATION \e[0m"
-useradd roboshop
-mkdir /app
-cd /app
-echo -e "\e[32m DOWNLOADING NEW CONTENT AND DEPENDENCIES \e[0m"
-curl -O https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
-unzip dispatch.zip
+color="\e[32m"
+nocolor="\e[0m"
+logfile="/tmp/roboshop.log"
+app_path="/app"
+
+echo -e "$color INSTALLING GOLANG SERVICE $nocolor"
+yum install golang -y &>>${logfile}
+echo -e "$color ADDING USER AND LOCATION $nocolor"
+useradd roboshop &>>${logfile}
+mkdir ${app_path}
+cd ${app_path}
+echo -e "$color DOWNLOADING NEW CONTENT AND DEPENDENCIES $nocolor"
+curl -O https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip &>>${logfile}
+unzip dispatch.zip &>>${logfile}
 rm -rf dispatch.zip
-go mod init dispatch
-go get
-go build
-echo -e "\e[32m creating payment service file \e[0m"
+go mod init dispatch &>>${logfile}
+go get &>>${logfile}
+go build &>>${logfile}
+echo -e "$color creating payment service file $nocolor"
 cp /root/repos-shell/dispatch.service /etc/systemd/system/dispatch.service
-echo -e "\e[32m ENABLING AND STARTING THE DISPATCH SERVICE \e[0m"
+echo -e "$color ENABLING AND STARTING THE DISPATCH SERVICE $nocolor"
 systemctl daemon-reload
-systemctl enable dispatch
+systemctl enable dispatch &>>${logfile}
 systemctl restart dispatch
