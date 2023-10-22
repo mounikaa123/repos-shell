@@ -23,7 +23,7 @@ systemctl daemon-reload
 echo -e "${color} DOWNLOADING AND INSTALLING THE MONGODB SCHEMA ${nocolor}"
 cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y &>>${logfile}
-mongo --host mongodb-dev.mounika.site <${app_path}/schema/user.js
+mongo --host mongodb-dev.mounika.site <${app_path}/schema/user.js &>>${logfile}
 echo -e "${color} ENABLING AND STARTING THE user SERVICE ${nocolor}"
 systemctl enable user &>>${logfile}
 systemctl restart user
