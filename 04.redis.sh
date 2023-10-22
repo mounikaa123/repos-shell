@@ -1,16 +1,20 @@
-echo -e  "\e[32m DOWNLOADING REDIS REPO \e[0m"
-yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y
-echo -e "\e[32m ENABLING REDIS 6.2 \e[0m"
-yum module list
-yum module enable redis:remi-6.2 -y
-echo -e "\e[33m INSTALLING REDIS SERVICE \e[0m"
-yum install redis -y
-echo -e  "\e[32m CHANGING THE LISTEN ADDRESS \e[0m"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf
-echo -e  "\e[32m CHANGING THE ANOTHER LISTEN ADDRESS \e[0m"
+color="\e[32m"
+nocolor="\e[0m"
+logfile="/tmp/roboshop.log"
+
+echo -e  "$color DOWNLOADING REDIS REPO $nocolor"
+yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm -y &>>${logfile}
+echo -e "$color ENABLING REDIS 6.2 $nocolor"
+yum module list &>>${logfile}
+yum module enable redis:remi-6.2 -y &>>${logfile}
+echo -e "\e[33m INSTALLING REDIS SERVICE $nocolor"
+yum install redis -y &>>${logfile}
+echo -e  "$color CHANGING THE LISTEN ADDRESS $nocolor"
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis.conf 
+echo -e  "$color CHANGING THE ANOTHER LISTEN ADDRESS $nocolor"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
-echo -e "\e[32m ENABLING AND RESTARTING REDIS \e[0m"
-systemctl enable redis
+echo -e "$color ENABLING AND RESTARTING REDIS $nocolor"
+systemctl enable redis &>>${logfile}
 systemctl restart redis
 
 
