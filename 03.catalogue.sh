@@ -1,7 +1,5 @@
-color="\e[32m"
-nocolor="\e[0m"
-logfile="/tmp/roboshop.log"
-app_path="/app"
+source common.sh
+component=catalogue
 
 echo -e "$color DOWNLOADING NODEJS REPO $nocolor"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -12,17 +10,17 @@ useradd roboshop &>>${logfile}
 mkdir ${app_path} 
 cd ${app_path} 
 echo -e "$color DOWNLOADING NEW CONTENT AND DEPENDENCIES $nocolor"
-curl -O https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>${logfile}
-unzip catalogue.zip &>>${logfile}
-rm -rf catalogue.zip &>>${logfile}
+curl -O https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${logfile}
+unzip $component.zip &>>${logfile}
+rm -rf $component.zip &>>${logfile}
 npm install &>>${logfile}
-echo -e "$color CREATING CATALOGUE SERVICE $nocolor"
-cp /root/repos-shell/catalogue.service /etc/systemd/system/catalogue.service
+echo -e "$color CREATING $component SERVICE $nocolor"
+cp /root/repos-shell/$component.service /etc/systemd/system/$component.service
 echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA $nocolor"
 cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y &>>${logfile}
-mongo --host mongodb-dev.mounika.site <${app_path}/schema/catalogue.js
-echo -e "$color ENABLING AND STARTING THE CATALOGUE SERVICE $nocolor"
+mongo --host mongodb-dev.mounika.site <${app_path}/schema/$component.js
+echo -e "$color ENABLING AND STARTING THE $component SERVICE $nocolor"
 systemctl daemon-reload
-systemctl enable catalogue &>>${logfile}
-systemctl restart catalogue
+systemctl enable $component &>>${logfile}
+systemctl restart $component
