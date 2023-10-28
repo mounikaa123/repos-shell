@@ -15,9 +15,9 @@ unzip ${component}.zip &>>${logfile}
 rm -rf ${component}.zip
 npm install &>>${logfile}
 echo -e "$color CREATING ${component} SERVICE$nocolor"
-cp /root/repo-shell/${component}.service /etc/systemd/system/${component}.service
+cp /root/repos-shell/${component}.service /etc/systemd/system/${component}.service
 echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA$nocolor"
-cp /root/repo-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
+cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y &>>${logfile}
 mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/${component}.js &>>${logfile}
 echo -e "$color ENABLEING AND STARTING THE ${component} SERVICE$nocolor"
