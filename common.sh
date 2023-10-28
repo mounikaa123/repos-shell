@@ -17,34 +17,34 @@ nodejs()
 app_start()
 {
   echo -e "$color ADDING USER AND LOCATION $nocolor"k
-    useradd roboshop &>>${logfile}
-    rm -rf ${app_path}
-    mkdir ${app_path}
-    cd ${app_path}
-    echo -e "$color DOWNLOADING NEW CONTENT AND DEPENDENCIES $nocolor"
-    curl -O https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${logfile}
-    unzip $component.zip &>>${logfile}
-    rm -rf $component.zip &>>${logfile}
+  useradd roboshop &>>${logfile}
+  rm -rf ${app_path}
+  mkdir ${app_path}
+  cd ${app_path}
+  echo -e "$color DOWNLOADING NEW CONTENT AND DEPENDENCIES $nocolor"
+  curl -O https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${logfile}
+  unzip $component.zip &>>${logfile}
+  rm -rf $component.zip &>>${logfile}
 
 }
 
 mongo_schema()
 {
   echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA $nocolor"
-    cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
-    yum install mongodb-org-shell -y &>>${logfile}
-    mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/$component.js
+  cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
+  yum install mongodb-org-shell -y &>>${logfile}
+  mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/$component.js
 
 }
 
 service_start()
 {
   echo -e "$color CREATING $component SERVICE $nocolor"
-    cp /root/repos-shell/$component.service /etc/systemd/system/$component.service
-    echo -e "$color ENABLING AND STARTING THE $component SERVICE $nocolor"
-    systemctl daemon-reload
-    systemctl enable $component &>>${logfile}
-    systemctl restart $component
+  cp /root/repos-shell/$component.service /etc/systemd/system/$component.service
+  echo -e "$color ENABLING AND STARTING THE $component SERVICE $nocolor"
+  systemctl daemon-reload
+  systemctl enable $component &>>${logfile}
+  systemctl restart $component
 }
 
 maven()
