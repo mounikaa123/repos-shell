@@ -46,3 +46,24 @@ service_start()
     systemctl enable $component &>>${logfile}
     systemctl restart $component
 }
+
+maven()
+{
+  echo -e "$color INSTALLING MAVEN SERVICE $nocolor"
+  yum install maven -y &>>${logfile}
+  app_start
+  mvn clean package &>>${logfile}
+  mv target/${component}-1.0.jar ${component}.jar
+  mysql_schema
+  service_start
+
+}
+
+mysql_schema()
+{
+  echo -e "$color INSTALLING MySql SERVICE $nocolor"
+  yum install mysql -y &>>${logfile}
+  echo -e "$color LOADING MySql SCHEME $nocolor"
+  mysql -h mysql-dev.mounika.site -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
+
+}
