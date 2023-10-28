@@ -18,6 +18,7 @@ app_start()
 {
   echo -e "$color ADDING USER AND LOCATION $nocolor"k
     useradd roboshop &>>${logfile}
+    rm -rf ${app_path}
     mkdir ${app_path}
     cd ${app_path}
     echo -e "$color DOWNLOADING NEW CONTENT AND DEPENDENCIES $nocolor"
