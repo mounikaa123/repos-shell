@@ -32,7 +32,7 @@ mongo_schema()
   echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA $nocolor"
     cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
     yum install mongodb-org-shell -y &>>${logfile}
-    mongo --host mongodb-dev.mounika.site <${app_path}/schema/$component.js
+    mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/$component.js
 
 }
 
