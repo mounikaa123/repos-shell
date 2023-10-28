@@ -12,8 +12,6 @@ nodejs()
   app_start
   npm install &>>${logfile}
   service_start
-
-
 }
 
 app_start()
