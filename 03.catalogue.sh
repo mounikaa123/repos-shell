@@ -19,7 +19,7 @@ cp /root/repos-shell/${component}.service /etc/systemd/system/${component}.servi
 echo -e "$color DOWNLOADING AND INSTALLING THE MONGODB SCHEMA $nocolor"
 cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
 yum install mongodb-org-shell -y &>>${logfile}
-mongo --host mongodb-dev.mounika.site <${app_path}/schema/${component}.js
+mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/${component}.js
 echo -e "$color ENABLING AND STARTING THE ${component} SERVICE $nocolor"
 systemctl daemon-reload
 systemctl enable ${component} &>>${logfile}
