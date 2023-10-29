@@ -67,3 +67,15 @@ mysql_schema()
   mysql -h mysql-dev.sindhu.cloud -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
 
 }
+
+python()
+{
+  echo -e "$color Installing python server $nocolor"
+  yum install python36 gcc python3-devel -y &>>${logfile}
+  app_start
+  echo -e "$color Downloading dependencies for python server $nocolor"
+  pip3.6 install -r requirements.txt &>>${logfile}
+  service_start
+
+
+}
