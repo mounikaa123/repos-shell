@@ -64,6 +64,6 @@ mysql_schema()
   echo -e "$color INSTALLING MySql SERVICE $nocolor"
   yum install mysql -y &>>${logfile}
   echo -e "$color LOADING MySql SCHEME $nocolor"
-  mysql -h mysql-dev.mounika.site -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
+  mysql -h mysql-dev.sindhu.cloud -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
 
 }
