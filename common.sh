@@ -76,6 +76,4 @@ python()
   echo -e "$color Downloading dependencies for python server $nocolor"
   pip3.6 install -r requirements.txt &>>${logfile}
   service_start
-
-
 }
