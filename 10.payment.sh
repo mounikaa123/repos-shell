@@ -1,4 +1,4 @@
-source commoon.sh
+source common.sh
 component=payment
 
 python
