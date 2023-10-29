@@ -51,20 +51,20 @@ app_start()
 mongo_schema()
 {
 echo -e "$color Downloading and installing the mongodb schema$nocolor"
- cp /root/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
+ cp /root/repos-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo
  status
 echo -e "$color Loading schema$nocolor"
  yum install mongodb-org-shell -y &>>${logfile}
  status
  echo -e "$color Installing Mongo schema$nocolor"
- mongo --host mongodb-dev.munukutla.online <${app_path}/schema/${component}.js &>>${logfile}
+ mongo --host mongodb-dev.sindhu.cloud <${app_path}/schema/${component}.js &>>${logfile}
  status
  }
 
  service_start()
  {
    echo -e "$color Creating ${component} service$nocolor"
-    cp /root/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
+    cp /root/repos-shell/${component}.service /etc/systemd/system/${component}.service
     status
     echo -e "$color System reload the ${component} service$nocolor"
     systemctl daemon-reload
@@ -97,7 +97,7 @@ echo -e "$color Loading schema$nocolor"
    yum install mysql -y &>>${logfile}
    status
    echo -e "$color setting mysql schema$nocolor"
-   mysql -h mysql-dev.munukutla.online -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
+   mysql -h mysql-dev.sindhu.cloud -uroot -pRoboShop@1 <${app_path}/schema/${component}.sql &>>${logfile}
    status
  }
 
